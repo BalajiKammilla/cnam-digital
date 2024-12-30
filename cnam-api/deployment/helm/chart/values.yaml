@@ -1,0 +1,14 @@
+---
+app:
+  envs:
+    QUARKUS_PROFILE: prod,api,management-api,scheduled-job
+    QUARKUS_DATASOURCE_JDBC_URL: datasource_jdbc_url
+    QUARKUS_DATASOURCE_PASSWORD: datasource_password
+    QUARKUS_DATASOURCE_USERNAME: datasource_username
+    QUARKUS_MINIO_ACCESS_KEY: minio_access_key
+    QUARKUS_MINIO_SECRET_KEY: minio_secret_key
+    QUARKUS_MINIO_URL: minio_url
+  version: 1.0.0-alpha.6
+  image: aptiway/cnam-api:1.0.0-alpha.6
+  host: mobis.ipscnam.ci
+  serviceType: ClusterIP

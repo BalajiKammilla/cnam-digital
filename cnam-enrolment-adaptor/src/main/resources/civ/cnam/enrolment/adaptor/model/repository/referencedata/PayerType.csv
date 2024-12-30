@@ -1,0 +1,9 @@
+ORDINAL,CODE,LABEL
+1,ASS,Assuré
+4,FRS,Frère ou sœur
+2,CJT,Conjoint(e )
+3,PER,Père
+3,MER,Mère
+5,TUT,Tuteur
+6,ENF,Enfant
+7,AUT,Autre

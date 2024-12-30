@@ -1,0 +1,13 @@
+ORDINAL,NUMBER_OF_PAGES,CATEGORY,CODE,LABEL
+1,2,PROOF_OF_IDENTITY,CNI,Carte d'identité
+3,1,PROOF_OF_IDENTITY,PAS,Passeport
+4,2,PROOF_OF_IDENTITY,CC,Carte consulaire /Carte de séjour
+5,1,PROOF_OF_IDENTITY,NAI,Extrait d'acte de naissance
+6,1,PROOF_OF_MARRIAGE,MAR,Acte de mariage
+6,1,PROOF_OF_PROFESSION,AT,Attestation de travail ou de présence au poste
+6,1,OTHER,AAP,Acte d'autorité parentale ou d'adoption
+6,1,OTHER,REAP,Reçu d'enrôlement de l'assuré payeur
+6,1,OTHER,PPIAP,Photocopie de la pièce d'identité de l'assuré payeur
+6,1,PROOF_OF_PROFESSION,PEN,"Bulletin de décision, arrêté ou attestation de pension"
+6,1,OTHER,FOR,Formulaire signé
+6,1,OTHER,JUSPAI,Justificatif de paiement

@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: payer-verification-api-config
+  namespace: mobis
+data:
+  cnam_payer_verification_adaptor: "mock"
+  base_uri: "https://caplonsgprd-2.securegateway.appdomain.cloud:15719/mws"
+  username: "mobis@ipscnam.ci"
+  request_response_logging_enabled: "true"

@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: zetes-config
+  namespace: mobis
+data:
+  cnam_enrolment_processor_adaptor: "zetes"
+  base_uri: "http://10.10.0.4:8080/services/rest/snedai"
+  encryption_certificate_uri: "file:///home/jboss/config/zetes-encryption-certificate.pem"

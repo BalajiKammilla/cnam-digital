@@ -1,0 +1,44 @@
+ORDINAL,CODE,LABEL
+4,11,Agriculteurs sur petite exploitation
+4,12,Agriculteurs sur moyenne exploitation
+4,13,Agriculteurs sur grande exploitation
+4,21,Artisans
+4,22,Commerçants et assimilés
+4,23,Chefs d'entreprise de 10 salariés ou plus
+4,31,Professions libérales
+4,33,Cadres de la fonction publique
+4,34,"Professeurs, professions scientifiques"
+4,35,"Professions de l'information, arts et spectacles"
+4,37,Cadres administratifs et commerciaux d'entreprise
+4,38,Ingénieurs et cadres techniques d'entreprise
+4,42,"Professeurs des écoles, instituteurs et assimilés"
+4,43,Profession interméd. de la santé & travail social
+4,44,"Clergé, religieux"
+4,45,Profession intermed. Admin. de la fonction publ.
+4,46,Profession interméd. Admin. & comm. des entrepr.
+4,47,Techniciens
+4,48,"Contremaîtres, agents de maîtrise"
+4,52,Employés civils & agents de service fonction publ.
+4,53,Policiers et militaires
+4,54,Employés administratifs d'entreprise
+4,55,Employés de commerce
+4,56,Personnels des services directs aux particuliers
+4,62,Ouvriers qualifiés de type industriel
+4,63,Ouvriers qualifiés de type artisanal
+4,64,Chauffeurs
+4,65,"Ouvrier qualif. (manut., magasin. & transp.)"
+4,67,Ouvriers non qualifiés de type industriel
+4,68,Ouvriers non qualifiés de type artisanal
+4,69,Ouvriers agricoles
+4,71,Anciens agriculteurs exploitants
+4,72,"Anciens artisans, commerçants, chefs d'entreprise"
+4,74,Anciens cadres
+4,75,Anciennes professions intermédiaires
+4,77,Anciens employés
+4,78,Anciens ouvriers
+4,81,Chômeurs n'ayant jamais travaillé
+4,83,Militaires du contingent
+4,84,"Elèves, étudiants"
+5,85,Pers. sans activ. prof. (- 60 ans sauf retraité)
+5,86,Pers. sans activ. prof. (+ 60 ans sauf retraité)
+6,0,Autre

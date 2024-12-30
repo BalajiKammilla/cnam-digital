@@ -1,0 +1,5 @@
+---
+name: cnam-api
+version: 1.6.0
+appVersion: "{{ .Values.app.version }}"
+apiVersion: v2

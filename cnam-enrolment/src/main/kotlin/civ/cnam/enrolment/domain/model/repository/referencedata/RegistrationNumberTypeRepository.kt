@@ -1,0 +1,6 @@
+package civ.cnam.enrolment.domain.model.repository.referencedata
+
+import civ.cnam.enrolment.domain.model.referencedata.RegistrationNumberType
+import civ.cnam.enrolment.domain.model.referencedata.RegistrationNumberTypeCode
+
+interface RegistrationNumberTypeRepository : ReferenceDataRepository<RegistrationNumberType, RegistrationNumberTypeCode>

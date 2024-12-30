@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prsCnamEncryptedEnrollmentRequest>
+    <requestIdentifier>{{  UUID v4 }}</requestIdentifier>
+    <enrollmentSite>DAT</enrollmentSite>
+    <enrollmentServiceVersion>SNEDAI.1.0</enrollmentServiceVersion>
+    <encryptedRequest>{{ base64 of encrypted prsCnamEnrollmentRequest  }}</encryptedRequest>
+</prsCnamEncryptedEnrollmentRequest>

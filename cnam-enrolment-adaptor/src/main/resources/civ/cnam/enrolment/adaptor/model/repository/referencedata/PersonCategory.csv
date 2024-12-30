@@ -1,0 +1,15 @@
+ORDINAL,CODE,LABEL
+1,FCI,Fonctionnaire civil
+1,MIL,Militaire
+2,REP,Retraité(e ) CGRAE
+1,SAL,Salarié(e )
+2,RET,Retraité(e ) CNPS
+1,LIB,Profession libérale
+1,TIN,Travailleur indépendant
+3,CHO,Chômeur
+4,IND,Indigent(e )
+1,ELE,Elève
+1,ETU,Etudiant(e )
+2,FEF,Femme au foyer
+5,AUA,Autre ayant-droit à charge
+5,AUO,Autre ouvrant-droit

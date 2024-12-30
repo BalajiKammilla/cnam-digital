@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: minio-config
+  namespace: mobis
+data:
+  minio_url: https://play.min.io:9443/
+  minio_access_key: asdadadadada

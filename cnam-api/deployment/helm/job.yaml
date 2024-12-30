@@ -1,0 +1,121 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: flyway-init
+  namespace: mobis
+spec:
+  completionMode: NonIndexed
+  template:
+    metadata:
+      namespace: mobis
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: QUARKUS_FLYWAY_ENABLED
+              value: "true"
+            - name: QUARKUS_LIQUIBASE_ENABLED
+              value: "false"
+            - name: QUARKUS_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: datasource_username
+                  name: datasource-config
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: datasource_jdbc_url
+                  name: datasource-config
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: datasource_password
+                  name: datasource-secret
+            - name: QUARKUS_MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: minio_secret_key
+                  name: minio-secret
+            - name: QUARKUS_MINIO_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: minio_access_key
+                  name: minio-config
+            - name: QUARKUS_MINIO_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: minio_url
+                  name: minio-config
+            - name: CNAM_SMS_BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: base_uri
+                  name: sms-config
+            - name: CNAM_SMS_CODE
+              valueFrom:
+                configMapKeyRef:
+                  key: code
+                  name: sms-config
+            - name: CNAM_SMS_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  name: sms-config
+            - name: CNAM_SMS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: sms-secret
+            - name: QUARKUS_MAILER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: host
+                  name: smtp-config
+            - name: QUARKUS_MAILER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: port
+                  name: smtp-config
+            - name: QUARKUS_MAILER_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: password
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_SSL
+              valueFrom:
+                configMapKeyRef:
+                  key: ssl
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_AUTH_METHODS
+              valueFrom:
+                configMapKeyRef:
+                  key: auth_methods
+                  optional: true
+                  name: smtp-config
+            - name: CNAM_ZETES_BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: base_uri
+                  name: zetes-config
+            - name: CNAM_ZETES_ENCRYPTION_CERTIFICATE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: encryption_certificate_uri
+                  name: zetes-config
+            - name: QUARKUS_INIT_AND_EXIT
+              value: "true"
+          image: {{ .Values.app.image }}
+          name: flyway-init
+      restartPolicy: OnFailure

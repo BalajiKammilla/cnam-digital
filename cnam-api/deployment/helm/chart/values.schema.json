@@ -1,0 +1,48 @@
+{
+  "$schema" : "https://json-schema.org/draft-07/schema#",
+  "properties" : {
+    "app" : {
+      "type" : "object",
+      "properties" : {
+        "serviceType" : {
+          "description" : "The service type to use.",
+          "type" : "string",
+          "enum" : [ "ClusterIP", "LoadBalancer", "NodePort", "ExternalName" ]
+        },
+        "image" : {
+          "description" : "The container image to use.",
+          "type" : "string"
+        },
+        "host" : {
+          "description" : "The host under which the application is going to be exposed.",
+          "type" : "string"
+        },
+        "envs" : {
+          "type" : "object",
+          "properties" : {
+            "QUARKUS_MINIO_URL" : {
+              "type" : "string"
+            },
+            "QUARKUS_DATASOURCE_USERNAME" : {
+              "type" : "string"
+            },
+            "QUARKUS_MINIO_SECRET_KEY" : {
+              "type" : "string"
+            },
+            "QUARKUS_DATASOURCE_JDBC_URL" : {
+              "type" : "string"
+            },
+            "QUARKUS_DATASOURCE_PASSWORD" : {
+              "type" : "string"
+            },
+            "QUARKUS_MINIO_ACCESS_KEY" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "title" : "Values",
+  "type" : "object"
+}

@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-08-12 - 03:11:36 +0000
+    app.quarkus.io/commit-id: d349408f79724ada94fe47b6ed684104321029ac
+  labels:
+    app.kubernetes.io/name: cnam-api
+    app.kubernetes.io/version: {{ .Values.app.version }}
+    app.kubernetes.io/managed-by: quarkus
+  name: cnam-api
+  namespace: mobis
+spec:
+  rules:
+    - host: {{ .Values.app.host }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: cnam-api
+                port:
+                  name: http
+            path: /
+            pathType: Prefix

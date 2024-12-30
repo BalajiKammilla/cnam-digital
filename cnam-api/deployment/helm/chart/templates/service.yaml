@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scheme: http
+    prometheus.io/port: "9191"
+    prometheus.io/path: /q/metrics
+    prometheus.io/scrape: "true"
+    app.quarkus.io/build-timestamp: 2023-08-12 - 03:11:36 +0000
+    app.quarkus.io/commit-id: d349408f79724ada94fe47b6ed684104321029ac
+  labels:
+    app.kubernetes.io/name: cnam-api
+    app.kubernetes.io/version: {{ .Values.app.version }}
+    app.kubernetes.io/managed-by: quarkus
+  name: cnam-api
+  namespace: mobis
+spec:
+  ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 8443
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 9191
+  selector:
+    app.kubernetes.io/name: cnam-api
+    app.kubernetes.io/version: {{ .Values.app.version }}
+  type: {{ .Values.app.serviceType }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cnam-api-nodeport
+  namespace: mobis
+  labels:
+    app.kubernetes.io/name: cnam-api
+    app.kubernetes.io/version: {{ .Values.app.version }}
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 9191
+      nodePort: 31080
+  selector:
+    app.kubernetes.io/name: cnam-api
+  type: NodePort
+

@@ -1,0 +1,217 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    prometheus.io/scheme: http
+    prometheus.io/port: "9191"
+    prometheus.io/path: /q/metrics
+    prometheus.io/scrape: "true"
+    app.quarkus.io/build-timestamp: 2023-08-12 - 03:11:36 +0000
+    app.quarkus.io/commit-id: d349408f79724ada94fe47b6ed684104321029ac
+  labels:
+    app.kubernetes.io/version: {{ .Values.app.version }}
+    app.kubernetes.io/name: cnam-api
+    app.kubernetes.io/managed-by: quarkus
+  name: cnam-api
+  namespace: mobis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cnam-api
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scheme: http
+        prometheus.io/port: "9191"
+        prometheus.io/path: /q/metrics
+        prometheus.io/scrape: "true"
+        app.quarkus.io/build-timestamp: 2023-12-19 - 19:43:36 +0000
+        app.quarkus.io/commit-id: 9b2b67fb6c6f2decf3f8704c78f364e561b29804
+      labels:
+        app.kubernetes.io/version: {{ .Values.app.version }}
+        app.kubernetes.io/name: cnam-api
+        app.kubernetes.io/managed-by: quarkus
+      namespace: mobis
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: QUARKUS_PROFILE
+              value: {{ .Values.app.envs.QUARKUS_PROFILE }}
+            - name: QUARKUS_FLYWAY_ENABLED
+              value: "true"
+            - name: QUARKUS_LIQUIBASE_ENABLED
+              value: "false"
+            - name: QUARKUS_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: datasource_username
+                  name: datasource-config
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: datasource_jdbc_url
+                  name: datasource-config
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: datasource_password
+                  name: datasource-secret
+            - name: QUARKUS_MINIO_ENABLED
+              value: "true"
+            - name: QUARKUS_MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: minio_secret_key
+                  name: minio-secret
+            - name: QUARKUS_MINIO_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: minio_access_key
+                  name: minio-config
+            - name: QUARKUS_MINIO_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: minio_url
+                  name: minio-config
+            - name: DRY_CORE_OBJECT_STORE_ADAPTOR
+              value: "minio"
+            - name: CNAM_SMS_BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: base_uri
+                  name: sms-config
+            - name: CNAM_SMS_CODE
+              valueFrom:
+                configMapKeyRef:
+                  key: code
+                  name: sms-config
+            - name: CNAM_SMS_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  name: sms-config
+            - name: CNAM_SMS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: sms-secret
+            - name: QUARKUS_MAILER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: host
+                  name: smtp-config
+            - name: QUARKUS_MAILER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: port
+                  name: smtp-config
+            - name: QUARKUS_MAILER_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: password
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_SSL
+              valueFrom:
+                configMapKeyRef:
+                  key: ssl
+                  optional: true
+                  name: smtp-config
+            - name: QUARKUS_MAILER_AUTH_METHODS
+              valueFrom:
+                configMapKeyRef:
+                  key: auth_methods
+                  optional: true
+                  name: smtp-config
+            - name: CNAM_ENROLMENT_PROCESSOR_ADAPTOR
+              valueFrom:
+                configMapKeyRef:
+                  key: cnam_enrolment_processor_adaptor
+                  name: zetes-config
+            - name: CNAM_ZETES_BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: base_uri
+                  name: zetes-config
+            - name: CNAM_ZETES_ENCRYPTION_CERTIFICATE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: encryption_certificate_uri
+                  name: zetes-config
+            - name: DRY_CORE_SECURITY_DATA_CIPHER_KEK
+              valueFrom:
+                secretKeyRef:
+                  key: key
+                  name: kek-secret
+            - name: CNAM_PAYER_VERIFICATION_API_BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: base_uri
+                  name: payer-verification-api-config
+            - name: CNAM_PAYER_VERIFICATION_API_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  name: payer-verification-api-config
+            - name: CNAM_PAYER_VERIFICATION_API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: payer-verification-api-secret
+            - name: CNAM_PAYER_VERIFICATION_ADAPTOR
+              valueFrom:
+                configMapKeyRef:
+                  key: cnam_payer_verification_adaptor
+                  name: payer-verification-api-config
+            - name: CNAM_PAYER_VERIFICATION_API_REQUEST_RESPONSE_LOGGING_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: request_response_logging_enabled
+                  name: payer-verification-api-config
+            - name: DRY_CORE_SCHEDULING_JOB_DRY_ALERT_OUTBOX_JOB_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: alert_outbox_job_enabled
+                  name: scheduled-job-config
+            - name: DRY_CORE_SCHEDULING_JOB_CNAM_VERIFICATION_OUTBOX_JOB_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: verification_outbox_job_enabled
+                  name: scheduled-job-config
+            - name: DRY_CORE_SCHEDULING_JOB_CNAM_ENROLMENT_OUTBOX_JOB_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: enrolment_outbox_job_enabled
+                  name: scheduled-job-config
+          image: {{ .Values.app.image }}
+          imagePullPolicy: Always
+          name: cnam-api
+          ports:
+            - containerPort: 9191
+              name: http
+              protocol: TCP
+            - containerPort: 8443
+              name: https
+              protocol: TCP
+          volumeMounts:
+            - name: zetes-encryption-certificate
+              mountPath: /home/jboss/config
+              readOnly: true
+      volumes:
+        - name: zetes-encryption-certificate
+          secret:
+            secretName: zetes-encryption-certificate
